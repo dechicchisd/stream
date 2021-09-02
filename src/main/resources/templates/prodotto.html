@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='FILM')"></head>
+
+<body>
+	<header th:replace="fragments/base.html :: navbar(page='')"></header>
+	<main class="background">
+		<h1 id="titolo-prodotto" th:text=${prodotto.titolo}></h1>
+		<div id="page-prodotto">
+			<div class="foto-container">	
+				<img th:src=${prodotto.path}>
+			</div>
+				<div class="info-section">
+					<div class="white-box">
+						
+						<div class="info-line voto-line">
+							<div>
+								<span class="voto">Voto: </span>
+								<span class="voto" th:text="|${votoMedio} &#11088;|"></span>
+							</div>
+							<form class="voto" th:action="@{/addVoto/{id} (id=${prodotto.id})}" method="POST">
+								<span>Inserisci voto: </span>
+								<input type="text" th:field="${voto.voto}">
+								<button>Vota</button>
+							</form>
+						</div>
+						
+						<div class="info-line">
+							<span>Regista: </span>
+							<span th:text="|${prodotto.regista.nome} ${prodotto.regista.cognome}|"></span>
+						</div>
+						
+						<div class="info-line">
+							<span id="cast">Cast: </span>
+							<span id="lista-cast">
+								<div th:each = "a : ${prodotto.attori}">
+									<div th:text="|${a.nome} ${a.cognome}|"></div>
+								</div>
+							</span>
+							<div class="add-attore"><a th:href="@{/addAttoreCast/{id} (id = ${prodotto.id})}">Aggiungi attore</a></div>
+						</div>
+						
+						<div class="info-line">
+							<span>Streaming: </span>
+							<span id="lista-servizi">
+								<div th:each = "s : ${prodotto.servizi}" class="servizio-img">
+									<a th:href="${s.url}">
+										<img th:src="${s.path}">
+									</a>
+								</div>
+							</span>
+								<div class="add-attore"><a th:href="@{/addServizio/{id} (id = ${prodotto.id})}">Aggiungi Servizio</a></div>
+						</div>
+						
+					</div>
+					
+					<div class="edit-btn"><a th:href="@{/modificaProdotto/{id} (id = ${prodotto.id})}">Modifica</a></div>
+					<div class="edit-btn"><a th:href="@{/eliminaProdotto/{id} (id = ${prodotto.id})}">Elimina</a></div>
+				</div>
+		</div>
+		
+	</main>
+</body>
+</html>

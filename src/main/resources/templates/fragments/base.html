@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles(title)">
+	<meta charset="UTF-8" />
+	<link th:href="@{/css/style.css}" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<title th:text="${title}"></title>
+</head>
+
+<body>
+	<header th:fragment="navbar(page)">
+		<div class="navbar" th:if="${session.credentials}">
+			<h1 id="logo"><a th:href="@{/}">Stream</a></h1>
+		    <ul>
+			  <li><a class="anchor-item" href="#">Home</a></li>
+		      <li><a class="anchor-item" href="#" th:href="@{/getSeries}">Serie TV</a></li>
+		      <li><a class="anchor-item" href="#" th:href="@{/getFilm}">Film</a></li>
+		      <li><a class="anchor-item" href="#" th:href="@{/getDocumentari}")>Documentari</a></li>	      
+		      <li th:if="${session.credentials.ruolo == 'ADMIN'}"><a class="anchor-item" th:href="@{/getAdmin}">Admin</a></li>	      	      
+		    </ul>
+		  	<span><a class="anchor-item" th:href="@{/logout}">Logout</a></span>
+		</div>
+		<div class="navbar" th:unless="${session.credentials}">
+			<h1 id="logo"><a th:href="@{/}">Stream</a></h1>
+		    <ul>
+			  <li><a class="anchor-item" href="#">Home</a></li>
+		      <li><a class="anchor-item" href="#" th:href="@{/getSeries}">Serie TV</a></li>
+		      <li><a class="anchor-item" href="#" th:href="@{/getFilm}">Film</a></li>
+		      <li><a class="anchor-item" href="#" th:href="@{/getDocumentari}")>Documentari</a></li>	      
+		    </ul>
+		  	<span><a class="anchor-item" th:href="@{/login}">Login/Registrati</a></span>
+		</div>
+  	</header>
+  	
+</body>
+</html>

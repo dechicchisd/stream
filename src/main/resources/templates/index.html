@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='SIW')"></head>
+
+<body>
+	<header th:replace="fragments/base.html :: navbar(page='artisti')"></header>
+	<main class="background">
+		<h1 th:text=${tipo} style="color: #e3be39; padding-bottom: 10px;"></h1>
+		<ul class="lista-prodotti">
+			<li th:each="p : ${prodotti}" class="prodotto">
+				<a th:href="@{'/getProdotto' + '/' + ${p.id}}">
+					<div id="foto-container">
+						<img th:src="${p.path}"/>
+					</div>
+				</a>
+				<h3 th:text=${p.titolo} style="color: #e3be39; padding-bottom: 10px;"></h3>
+			</li>
+		</ul>		
+	</main>
+</body>
+</html>

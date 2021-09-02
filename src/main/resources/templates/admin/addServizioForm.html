@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='FILM')"></head>
+
+<body>
+	<header th:replace="fragments/base.html :: navbar(page='')"></header>
+	<main class="background addForm">
+		<form th:action="@{/addServizio}" method="POST" th:object="${servizio}"enctype="multipart/form-data">
+			<div><h2 class="form-line">AGGIUNGI SERVIZIO</h2></div>
+			
+			<div class="form-line">
+				<label for="nome">Nome</label>
+				<input id="nome" type="text" th:field="*{nome}">
+			</div>
+			<div class="form-line">
+				<label for="nome">URL</label>
+				<input id="nome" type="text" th:field="*{url}">
+			</div>
+			
+			<div class="form-line">
+				<label for="file">Immagine</label>
+				<input id="file" type="file" name="file" style="color: white">
+			</div>
+			
+			<div class="form-line">
+				<button type="submit">Aggiungi</button>
+			</div>
+		
+		</form>
+		
+	</main>
+</body>
+</html>

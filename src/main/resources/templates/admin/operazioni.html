@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='FILM')"></head>
+
+<body>
+	<header th:replace="fragments/base.html :: navbar(page='')"></header>
+	<main id="operazioni" class="background">
+		<div class="lista-operazioni">
+			<div><a th:href="@{addProdotto}">AGGIUNGI PRODOTTO</a></div>
+			<div><a th:href="@{addRegista}">AGGIUNGI REGISTA</a></div>
+			<div><a th:href="@{addAttore}">AGGIUNGI ATTORE</a></div>
+			<div><a th:href="@{addServizio}">AGGIUNGI SERVIZIO</a></div>
+			
+		</div>
+		
+	</main>
+</body>
+</html>

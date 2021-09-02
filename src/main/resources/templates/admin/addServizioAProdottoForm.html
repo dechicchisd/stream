@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='FILM')"></head>
+
+<body>
+	<header th:replace="fragments/base.html :: navbar(page='')"></header>
+	<main class="background addForm">
+		<form th:action="@{/addServizioAProdotto/{prodottoID} (prodottoID = ${prodotto.id})}" method="POST" th:object="${prodotto}">
+			<div><h2 class="form-line">AGGIUNGI SERVIZIO AD UN PRODOTTO</h2></div>
+			
+			<div class="form-line">
+				<label for="titolo">Titolo</label>
+				<input id="titolo" type="text" th:field="${prodotto.titolo}" readonly>
+			</div>
+			
+				<label for="servizio">Servizio</label>
+				<select id="servizio" name="servizioID">
+					<option value="">-- Seleziona servizio --</option>
+					<option th:each="s : ${servizi}"
+							th:value="${s.id}"
+							th:text="${s.nome}"></option>
+					
+				</select>
+			</div>
+			
+			<div class="form-line">
+				<button type="submit">Aggiungi</button>
+			</div>
+		
+		</form>
+		
+	</main>
+</body>
+</html>

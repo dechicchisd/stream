@@ -1,0 +1,232 @@
+*{
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+.background{
+	background-color: #061938;
+	min-height: 690px;
+}
+
+#operazioni{
+	display: flex;
+	justify-content: center;	
+}
+
+
+.navbar{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+  	background-color: #010b1c;
+}
+
+.navbar ul{
+	display: flex;
+	margin-right: 20px;
+}
+
+.navbar li{
+	list-style: none;
+}
+
+.navbar a{
+	display: block;
+	color: white;
+  	text-decoration: none;
+}
+
+.anchor-item{
+	padding: 20px 40px;
+	font-size: 20px;
+}
+
+.anchor-item:hover{
+	background-color: #404242;
+}
+
+#logo{
+	margin-left: 20px;
+	font-size: 36px
+}
+
+#spazio{
+	height: 62px;
+	width: 100vh;
+}
+
+form{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+form h2, form label{
+	color: white;
+}
+
+.form-line{
+	padding: 20px;
+}
+
+.addForm{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.lista-operazioni{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.lista-operazioni div{
+	padding: 10px;
+}
+
+.lista-operazioni a:visited{
+	color:white;
+}
+
+.lista-operazioni a:hover{
+	color:#e3be39;
+}
+
+.lista-operazioni a{
+	color:white;
+}
+
+.foto-container{
+	background-color: rgba(0,0,0,0);
+	height: 800px;
+	width: 400px;
+	overflow: hidden;
+}
+
+.foto-container img{
+	width: auto;
+	height: 600px;
+}
+
+.prodotto{
+	background-color: rgba(0,0,0,0);
+	height: 400px;
+	width: 200px;
+	margin: 20px;
+}
+
+.lista-prodotti{
+	display: flex;
+	flex-wrap: wrap;
+	width: 1440px;
+}
+
+.lista-prodotti li{
+	list-style-type: none;
+	width: 200px;
+	height: 350px;
+	overflow: hidden;
+	margin-bottom: 20px;
+}
+
+.lista-prodotti img{
+	width: auto;
+	height: 300px;
+}
+
+h2{
+	color: #e3be39;
+}
+
+#titolo-prodotto{
+	color: #e3be39;
+}
+
+#page-prodotto{
+	display: flex;
+}
+
+.white-box{
+	width: 900px;
+	min-height: 200px;
+	background-color: rgba(255, 255, 255, 0.3);
+}
+
+.edit-btn{
+	height: 100px;
+	width: 300px;
+	background-color: grey;
+}
+
+.edit-btn a{
+	display: block;
+	height: 100%;
+	width: 100%;
+	text-decoration: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.edit-btn{
+	font-size: 20px;
+}
+
+.info-section{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	margin-left: 100px;
+	height: 600px;
+}
+
+.info-line{
+	padding: 10px;
+}
+
+#lista-cast{
+	display: inline-block;
+}
+
+#cast{
+	text-align: start;
+	vertical-align: top;
+}
+
+.voto{
+	display: inline-block;
+}
+
+.voto input{
+	width: 30px;
+}
+
+.voto-line{
+	display: flex;
+	justify-content: space-between;
+}
+
+#lista-servizi{
+	display:flex;
+}
+
+.servizio-img{
+	width: 50px;
+	height: 50px;
+	padding: 5px;
+}
+.servizio-img img{
+	width: 50px;
+	height: 50px;
+	border-radius: 5px;
+}
+
+.info-line a :visited, .info-line a{
+	color: blue; 		
+}

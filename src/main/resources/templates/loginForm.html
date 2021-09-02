@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='FILM')"></head>
+
+<body>
+	<header th:replace="fragments/base.html :: navbar(page='')"></header>
+	<main class="background addForm">
+		<form th:action="@{/login}" method="POST">
+			<div><h2 class="form-line">LOGIN</h2></div>
+			
+			<div class="form-line">
+				<label for="username">Username</label>
+				<input id="username" type="text" name="username" required>
+			</div>
+			
+			
+			<div class="form-line">
+				<label for="password">Password</label>
+				<input id="password" type="password" name="password" required>
+			</div>
+			
+			
+			<div class="form-line">
+				<button type="submit">Login</button>
+			</div>
+
+			<div>
+				<a th:href="@{/register}">Non hai un account? Registrati</a>
+			</div>
+		
+		
+		</form>
+		
+	</main>
+</body>
+</html>

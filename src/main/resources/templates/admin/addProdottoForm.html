@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='FILM')"></head>
+
+<body>
+	<header th:replace="fragments/base.html :: navbar(page='')"></header>
+	<main class="background addForm">
+		<form th:action="@{/addProdotto}" method="POST" th:object="${prodotto}"enctype="multipart/form-data">
+			<div><h2 class="form-line">AGGIUNGI PRODOTTO</h2></div>
+			
+			<div class="form-line">
+				<label for="titolo">Titolo</label>
+				<input id="titolo" type="text" th:field="*{titolo}">
+			</div>
+			<div class="form-line">
+				<label for="tipo">Tipo</label>
+				<select id="tipo" th:field="*{tipo}">
+					<option value="">-- Seleziona tipo di prodotto --</option>
+					<option value="Film">Film</option>
+					<option value="SerieTV">Serie TV</option>
+					<option value="Documentario">Documentario</option>
+				</select>
+			</div>
+			
+			<div class="form-line">
+				<label for="genere">Genere</label>
+				<input id="genere"type="text" th:field="*{genere}">
+			</div>
+
+			<div class="form-line">
+				<label for="regista">Regista</label>
+				<select id="regista" th:field=*{regista.id}>
+					<option value="">-- Seleziona Regista --</option>
+					<option th:each ="r : ${registi}"
+							th:value = "${r.id}"
+							th:text = "|${r.nome} ${r.cognome}|">
+					</option>
+				</select>
+			</div>
+			
+			<div class="form-line">
+				<label for="file">Immagine</label>
+				<input id="file" type="file" name="file" style="color: white">
+			</div>
+			
+			<div class="form-line">
+				<button type="submit">Aggiungi</button>
+			</div>
+		
+		</form>
+		
+	</main>
+</body>
+</html>

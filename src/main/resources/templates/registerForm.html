@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='FILM')"></head>
+
+<body>
+	<header th:replace="fragments/base.html :: navbar(page='')"></header>
+	<main class="background addForm">
+		<form th:action="@{/register}" method="POST">
+			<div><h2 class="form-line">REGISTRATI</h2></div>
+			
+			<div class="form-line">
+				<label for="nome">Nome</label>
+				<input id="nome" type="text" name="nome">
+			</div>
+			<div class="errors" 
+			  				th:if="${#fields.hasErrors('user.nome')}"
+                			th:errors="${user.nome}" th:style="'color:red'">
+            </div>
+
+			<div class="form-line">
+				<label for="cognome">Cognome</label>
+				<input id="cognome" type="text" name="cognome">
+			</div>
+			<div class="errors"  
+			  				th:if="${#fields.hasErrors('user.cognome')}"
+                			th:errors="${user.cognome}" th:style="'color:red'">
+            </div>
+			
+			<div class="form-line">
+				<label for="username">Username</label>
+				<input id="username" type="text" name="username">
+			</div>
+			
+			<div class="errors"  
+			  				th:if="${#fields.hasErrors('credentials.username')}"
+                			th:errors="${credentials.username}" th:style="'color:red'">
+            </div>
+                		
+			<div class="form-line">
+				<label for="password">Password</label>
+				<input id="password" type="password" name="password">
+			</div>
+			
+			<div class="errors"  
+			  				th:if="${#fields.hasErrors('credentials.password')}"
+	                		th:errors="${credentials.password}" th:style="'color:red'">
+	        </div>
+			
+			<div class="form-line">
+				<button type="submit">Registrati</button>
+			</div>
+		
+		</form>
+		
+	</main>
+</body>
+</html>
