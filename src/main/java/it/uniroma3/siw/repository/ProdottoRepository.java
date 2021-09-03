@@ -24,4 +24,6 @@ public interface ProdottoRepository extends CrudRepository<Prodotto, Long>{
 	@Query("DELETE FROM Prodotto p WHERE p.id = ?1")
 	public void deleteProdotto(Long id);
 
+	public List<Prodotto> findProdottoByTitolo(String nome);
+
 }

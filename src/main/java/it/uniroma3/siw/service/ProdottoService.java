@@ -52,6 +52,11 @@ public class ProdottoService {
 	}
 
 	@Transactional
+	public Prodotto prodottoPerTitolo(String titolo) {
+			return this.prodottoRepository.findProdottoByTitolo(titolo).get(0);
+	}
+
+	@Transactional
 	public boolean alreadyExists(Prodotto prodotto) {
 		List<Prodotto> prodotti = this.prodottoRepository.findByTitolo(prodotto.getTitolo());
 		if (prodotti.size() > 0)

@@ -51,6 +51,10 @@ public class Prodotto {
 		attori.add(attore);
 	}
 	
+	public void removeAttoreCast(Attore attore) {
+		attori.remove(attore);
+	}
+	
 	public void addVoto(Voto voto) {
 		voti.add(voto);
 	}

@@ -51,7 +51,7 @@ public class AttoreController {
 		model.addAttribute("prodotto", prodotto);
 		model.addAttribute("attori", attoreService.tutti());
 		model.addAttribute("indice", prodotto.getAttori().size());
-		return "addAttoreCastForm.html";
+		return "/admin/addAttoreCastForm.html";
 	}
 
 	@RequestMapping(value="/addAttoreCast/{prodottoID}", method=RequestMethod.POST)
@@ -63,6 +63,21 @@ public class AttoreController {
 		Prodotto prodotto = prodottoService.ProdottoPerId(prodottoId);
 		
 		prodotto.addAttoreCast(attore);
+		prodottoService.inserisci(prodotto);
+		model.addAttribute("prodotti", prodottoService.tutti());
+		
+		return "index.html";
+	}
+	
+	@RequestMapping(value="/eliminaAttoreCast/{attoreID}/{prodottoID}", method=RequestMethod.GET)
+	public String eliminaAttoreCast(Model model, 
+			@PathVariable("attoreID") Long attoreId,
+			@PathVariable("prodottoID") Long prodottoId) {
+		
+		Attore attore = attoreService.AttorePerId(attoreId);
+		Prodotto prodotto = prodottoService.ProdottoPerId(prodottoId);
+		
+		prodotto.removeAttoreCast(attore);
 		prodottoService.inserisci(prodotto);
 		model.addAttribute("prodotti", prodottoService.tutti());
 		

@@ -230,3 +230,21 @@ h2{
 .info-line a :visited, .info-line a{
 	color: blue; 		
 }
+
+.deleteBtn{
+	width: 10px;
+	height: 10px;
+	background-color: red;
+	margin-top: 4px;
+	margin-left: 10px;
+}
+
+.actor-line{
+	display: flex;
+}
+
+.deleteBtn a{
+	display: block;
+	height: 100%;
+	width: 100%;
+}
