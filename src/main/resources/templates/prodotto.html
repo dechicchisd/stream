@@ -34,8 +34,12 @@
 							<span id="cast">Cast: </span>
 							<span id="lista-cast">
 								<div th:each = "a : ${prodotto.attori}" class="actor-line">
-									<div th:text="|${a.nome} ${a.cognome}|"></div>
-									<div class="deleteBtn"><a th:href="@{/eliminaAttoreCast/{attoreID}/{prodottoID} (attoreID=${a.id},prodottoID=${prodotto.id})}"><i class="fas fa-trash"></i></a></div>
+									<div id="nome-attore" th:text="|${a.nome} ${a.cognome}|"></div>
+									<div class="deleteBtn">
+										<a th:href="@{/eliminaAttoreCast/{attoreID}/{prodottoID} (attoreID=${a.id},prodottoID=${prodotto.id})}">
+											<div><i class="far fa-trash-alt"></i></div>
+										</a>
+									</div>
 								</div>
 							</span>
 							<div class="add-attore"><a th:href="@{/addAttoreCast/{id} (id = ${prodotto.id})}">Aggiungi attore</a></div>
@@ -49,7 +53,11 @@
 										<img th:src="${s.path}">
 									</a>
 									
-									<div class="deleteBtn"><a th:href="eliminaServizioProdotto"></a></div>
+									<div class="deleteBtn">
+										<a th:href="@{/eliminaServizioProdotto/{servizioID}/{prodottoID} (servizioID=${s.id},prodottoID=${prodotto.id})}">
+											<div><i class="far fa-trash-alt"></i></div>
+										</a>
+									</div>
 								</div>
 							</span>
 								<div class="add-attore"><a th:href="@{/addServizio/{id} (id = ${prodotto.id})}">Aggiungi Servizio</a></div>

@@ -60,7 +60,7 @@ public class ServizioController {
 	}
 	
 	@RequestMapping(value="/addServizioAProdotto/{prodottoID}", method=RequestMethod.POST)
-	public String addAttoreCast(Model model, 
+	public String addServizioProdotto(Model model, 
 								@PathVariable("prodottoID") Long prodottoId,
 								@RequestParam("servizioID") Long servizioId) {
 		
@@ -75,5 +75,21 @@ public class ServizioController {
 		model.addAttribute("votoMedio", UtilsStream.mediaVoti(votiProdotto));
 		
 		return "prodotto.html";
+	}
+
+	@RequestMapping(value="/eliminaServizioProdotto/{servizioID}/{prodottoID}", method=RequestMethod.GET)
+	public String rimuoviServizioProdotto(Model model, 
+			@PathVariable("prodottoID") Long prodottoId,
+			@PathVariable("servizioID") Long servizioId) {
+		
+		Servizio servizio = servizioService.servizioPerdId(servizioId);
+		Prodotto prodotto = prodottoService.ProdottoPerId(prodottoId);
+
+		prodotto.removeServizioProdotto(servizio);
+		prodottoService.inserisci(prodotto);
+		
+		model.addAttribute("prodotti", prodottoService.tutti());
+		
+		return "index.html";
 	}
 }

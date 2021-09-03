@@ -62,5 +62,9 @@ public class Prodotto {
 	public void addServizio(Servizio servizio) {
 		servizi.add(servizio);
 	}
+
+	public void removeServizioProdotto(Servizio servizio) {
+		servizi.remove(servizio);
+	}
 	
 }

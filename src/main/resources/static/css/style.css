@@ -214,11 +214,12 @@ h2{
 
 #lista-servizi{
 	display:flex;
+	min-height: 85px;
 }
 
 .servizio-img{
 	width: 50px;
-	height: 50px;
+	min-height: 50px;
 	padding: 5px;
 }
 .servizio-img img{
@@ -232,19 +233,40 @@ h2{
 }
 
 .deleteBtn{
-	width: 10px;
-	height: 10px;
-	background-color: red;
-	margin-top: 4px;
-	margin-left: 10px;
+	width: 20px;
+	height: 20px;
+	background-color: #969696;
+	border-radius: 3px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
-.actor-line{
-	display: flex;
+.deleteBtn :hover{
+	background-color: #616161;
+	border-radius: 3px;
 }
+
+.deleteBtn a div{
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: black;
+}
+
 
 .deleteBtn a{
 	display: block;
 	height: 100%;
 	width: 100%;
+}
+
+.actor-line{
+	display: flex;
+	padding: 2px;
+}
+
+#nome-attore{
+	min-width:100px
 }
