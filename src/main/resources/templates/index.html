@@ -5,7 +5,7 @@
 <body>
 	<header th:replace="fragments/base.html :: navbar(page='artisti')"></header>
 	<main class="background">
-		<h1 th:text=${tipo} style="color: #e3be39; padding-bottom: 10px;"></h1>
+		<h1 id="tipo" th:text=${tipo} style="color: #e3be39; padding-bottom: 10px;"></h1>
 		<ul class="lista-prodotti">
 			<li th:each="p : ${prodotti}" class="prodotto">
 				<a th:href="@{'/getProdotto' + '/' + ${p.id}}">

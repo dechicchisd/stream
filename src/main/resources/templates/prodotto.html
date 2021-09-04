@@ -6,7 +6,65 @@
 	<header th:replace="fragments/base.html :: navbar(page='')"></header>
 	<main class="background" th:object="${prodotto}">
 		<h1 id="titolo-prodotto" th:text=*{titolo}></h1>
-		<div id="page-prodotto">
+	
+	
+	
+		<div id="page-prodotto" sec:authorize="!isAuthenticated() or hasAuthority('DEFAULT')">
+			<div class="foto-container">	
+				<img th:src=${prodotto.path}>
+			</div>
+				<div class="info-section">
+					<div class="white-box">
+						
+						<div class="info-line voto-line">
+							<div>
+								<span class="voto">Voto: </span>
+								<span class="voto" th:text="|${votoMedio} &#11088;|"></span>
+							</div>
+							<form class="voto" th:action="@{/addVoto/{id} (id=${prodotto.id})}" method="POST">
+								<span>Inserisci voto: </span>
+								<input type="text" th:field="${voto.voto}">
+								<button>Vota</button>
+							</form>
+						</div>
+						
+						<div class="info-line">
+							<span>Regista: </span>
+							<span th:text="|${prodotto.regista.nome} ${prodotto.regista.cognome}|"></span>
+						</div>
+						
+						<div class="info-line">
+							<span id="cast">Cast: </span>
+							<span id="lista-cast">
+								<div th:each = "a : ${prodotto.attori}" class="actor-line">
+									<div id="nome-attore" th:text="|${a.nome} ${a.cognome}|"></div>
+								</div>
+							</span>
+						</div>
+						
+						<div class="info-line">
+							<span>Streaming: </span>
+							<span id="lista-servizi">
+								<div th:each = "s : ${prodotto.servizi}" class="servizio-img">
+									<a th:href="${s.url}">
+										<img th:src="${s.path}">
+									</a>
+									<div id="nome-servizio" th:text="${s.nome}"></div>
+									
+								</div>
+							</span>
+						</div>
+						
+					</div>
+				</div>
+		</div>
+		
+		
+	
+	
+	
+		
+		<div id="page-prodotto" sec:authorize="hasAuthority('ADMIN')">
 			<div class="foto-container">	
 				<img th:src=${prodotto.path}>
 			</div>
@@ -52,6 +110,7 @@
 									<a th:href="${s.url}">
 										<img th:src="${s.path}">
 									</a>
+									<div id="nome-servizio" th:text="${s.nome}"></div>
 									
 									<div class="deleteBtn">
 										<a th:href="@{/eliminaServizioProdotto/{servizioID}/{prodottoID} (servizioID=${s.id},prodottoID=${prodotto.id})}">

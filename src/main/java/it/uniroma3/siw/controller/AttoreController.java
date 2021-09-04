@@ -41,6 +41,7 @@ public class AttoreController {
 		attoreService.inserisci(attore);
 		
 		model.addAttribute("prodotti", prodottoService.tutti());
+		model.addAttribute("tipo", "TUTTI I PRODOTTI");
 		
 		return "index.html";
 	}
@@ -65,6 +66,7 @@ public class AttoreController {
 		prodotto.addAttoreCast(attore);
 		prodottoService.inserisci(prodotto);
 		model.addAttribute("prodotti", prodottoService.tutti());
+		model.addAttribute("tipo", "TUTTI I PRODOTTI");
 		
 		return "index.html";
 	}
@@ -80,6 +82,7 @@ public class AttoreController {
 		prodotto.removeAttoreCast(attore);
 		prodottoService.inserisci(prodotto);
 		model.addAttribute("prodotti", prodottoService.tutti());
+		model.addAttribute("tipo", "TUTTI I PRODOTTI");
 		
 		return "index.html";
 	}

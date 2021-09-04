@@ -183,6 +183,7 @@ public class ProdottoController {
 		prodottoService.deleteProdotto(id);
 		
 		model.addAttribute("prodotti", prodottoService.tutti());
+		model.addAttribute("tipo", "TUTTI I PRODOTTI");
 		
 		return "index.html";
 	}

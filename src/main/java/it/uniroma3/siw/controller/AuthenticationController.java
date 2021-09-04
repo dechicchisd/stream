@@ -52,7 +52,7 @@ public class AuthenticationController {
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET) 
 	public String logout(Model model) {
-		
+
 		return "index.html";
 	}
 	
@@ -68,6 +68,7 @@ public class AuthenticationController {
         }
  
     	model.addAttribute("prodotti", prodottoService.tutti());
+		model.addAttribute("tipo", "TUTTI I PRODOTTI");
 
     	return "index.html";
     }

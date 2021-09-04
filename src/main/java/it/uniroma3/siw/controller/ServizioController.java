@@ -48,6 +48,8 @@ public class ServizioController {
     	
 		this.servizioService.inserisci(servizio);
 		model.addAttribute("prodotti", this.prodottoService.tutti());
+		model.addAttribute("tipo", "TUTTI I PRODOTTI");
+
 		return "index.html";
 	}
 	
@@ -89,6 +91,7 @@ public class ServizioController {
 		prodottoService.inserisci(prodotto);
 		
 		model.addAttribute("prodotti", prodottoService.tutti());
+		model.addAttribute("tipo", "TUTTI I PRODOTTI");
 		
 		return "index.html";
 	}

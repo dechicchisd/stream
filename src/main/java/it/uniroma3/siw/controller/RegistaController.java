@@ -35,6 +35,7 @@ public class RegistaController {
     	regista.setPath(path);
     	registaService.inserisci(regista);
 		model.addAttribute("prodotti", prodottoService.tutti());
+		model.addAttribute("tipo", "TUTTI I PRODOTTI");
 		
 		return "index.html";
 	}
