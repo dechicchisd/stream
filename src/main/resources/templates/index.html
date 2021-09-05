@@ -5,7 +5,10 @@
 <body>
 	<header th:replace="fragments/base.html :: navbar(page='artisti')"></header>
 	<main class="background">
-		<h1 id="tipo" th:text=${tipo} style="color: #e3be39; padding-bottom: 10px;"></h1>
+		<div id="intestazione">
+			<h1 id="tipo" th:text=${tipo} style="color: #e3be39; padding-bottom: 10px;"></h1>
+			<h2 id="nome-utente" sec:authorize="isAuthenticated()" th:text="|Ciao ${session.credentials.username}|"></h2>
+		</div>
 		<ul class="lista-prodotti">
 			<li th:each="p : ${prodotti}" class="prodotto">
 				<a th:href="@{'/getProdotto' + '/' + ${p.id}}">

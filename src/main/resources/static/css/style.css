@@ -152,6 +152,19 @@ h2{
 	margin-bottom: 20px;
 }
 
+#tipo, #nome-utente{
+	display: inline;
+}
+
+#nome-utente{
+	margin-right: 30px;
+}
+
+#intestazione{
+	display: flex;
+	justify-content: space-between;
+}
+
 #page-prodotto{
 	display: flex;
 }
