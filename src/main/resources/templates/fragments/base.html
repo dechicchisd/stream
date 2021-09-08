@@ -16,7 +16,8 @@
 			  <li><a class="anchor-item" href="#">Home</a></li>
 		      <li><a class="anchor-item" href="#" th:href="@{/getSeries}">Serie TV</a></li>
 		      <li><a class="anchor-item" href="#" th:href="@{/getFilm}">Film</a></li>
-		      <li><a class="anchor-item" href="#" th:href="@{/getDocumentari}")>Documentari</a></li>	      
+		      <li><a class="anchor-item" href="#" th:href="@{/getDocumentari}">Documentari</a></li>	      
+		      <li><a class="anchor-item" href="#" th:href="@{/getWatchlist/{id} (id = ${session.credentials.user.id})}" style="color: #e3be39">Watchlist</a></li>	      
 		      <li th:if="${session.credentials.ruolo == 'ADMIN'}"><a class="anchor-item" th:href="@{/getAdmin}">Admin</a></li>	      	      
 		    </ul>
 		  	<span><a class="anchor-item" th:href="@{/logout}">Logout</a></span>

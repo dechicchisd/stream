@@ -295,3 +295,19 @@ h2{
 #nome-attore{
 	min-width:100px
 }
+
+.wish-button{
+	display: flex;
+	background-color: green;
+	width: 200px;
+	height: 30px; 
+	border-radius: 2px;
+	justify-content: center;
+	align-items: center;
+}
+
+.wish-button a{
+	display: block;
+	text-decoration: none;
+	color: #e3be39;
+}

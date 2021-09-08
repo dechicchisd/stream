@@ -215,8 +215,8 @@ public class ProdottoController {
 			
 			votiProdotto = votoService.votiPerIdProdotto(prodottoId);
 			
-			model.addAttribute("voto", new Voto());
 			model.addAttribute("votoMedio", UtilsStream.mediaVoti(votiProdotto));
+			model.addAttribute("voto", new Voto());
 			model.addAttribute("prodotto", prodotto);
 			return "prodotto.html";
 		}

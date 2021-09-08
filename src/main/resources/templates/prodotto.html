@@ -14,6 +14,10 @@
 				<img th:src=${prodotto.path}>
 			</div>
 				<div class="info-section">
+				
+					<div class="wish-button">
+						<a th:href="@{/addWatchlist/{idProdotto} (idProdotto=${prodotto.id})}">Aggiungi alla wishlist</a>
+					</div>
 					<div class="white-box">
 						
 						<div class="info-line voto-line">
@@ -69,6 +73,9 @@
 				<img th:src=${prodotto.path}>
 			</div>
 				<div class="info-section">
+					<div class="wish-button">
+						<a th:href="@{/addWatchlist/{idProdotto} (idProdotto=${prodotto.id})}">Aggiungi alla wishlist</a>
+					</div>
 					<div class="white-box">
 						
 						<div class="info-line voto-line">

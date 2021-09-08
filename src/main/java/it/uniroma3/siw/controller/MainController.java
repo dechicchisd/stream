@@ -12,10 +12,12 @@ import it.uniroma3.siw.service.ProdottoService;
 public class MainController {
 	@Autowired
 	ProdottoService prodottoService;
+	
 	@RequestMapping(value="/getAdmin", method=RequestMethod.GET)
 	public String getAdmin() {
 		return "/admin/operazioni.html";
 	}
+	
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String getHome(Model model) {
 		model.addAttribute("prodotti", prodottoService.tutti());

@@ -37,6 +37,9 @@ public class Prodotto {
 	
 	private String path;
 	
+	@ManyToMany(mappedBy = "watchlist")
+	private List<User> utentiWatchlist; 
+	
 	
 	@OneToMany(mappedBy="prodotto")
 	private List<Voto> voti;
@@ -65,6 +68,12 @@ public class Prodotto {
 
 	public void removeServizioProdotto(Servizio servizio) {
 		servizi.remove(servizio);
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		Prodotto p = (Prodotto) o;
+		return p.getTitolo().equals(this.getTitolo());
 	}
 	
 }
