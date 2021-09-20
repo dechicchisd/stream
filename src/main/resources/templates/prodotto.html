@@ -32,7 +32,7 @@
 							</form>
 						</div>
 						
-						<div class="info-line">
+						<div class="info-line" th:if="${prodotto.regista}">
 							<span>Regista: </span>
 							<span th:text="|${prodotto.regista.nome} ${prodotto.regista.cognome}|"></span>
 						</div>
@@ -90,7 +90,7 @@
 							</form>
 						</div>
 						
-						<div class="info-line">
+						<div class="info-line" th:if="${prodotto.regista}">
 							<span>Regista: </span>
 							<span th:text="|${prodotto.regista.nome} ${prodotto.regista.cognome}|"></span>
 						</div>

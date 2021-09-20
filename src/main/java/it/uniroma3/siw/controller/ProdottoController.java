@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import it.uniroma3.siw.controller.validator.ProdottoValidator;
 import it.uniroma3.siw.controller.validator.VotoValidator;
 import it.uniroma3.siw.model.Attore;
 import it.uniroma3.siw.model.Credentials;
@@ -53,6 +54,9 @@ public class ProdottoController {
 
 	@Autowired
 	private VotoValidator votoValidator;
+
+	@Autowired
+	private ProdottoValidator prodottoValidator;
 	
 	
 	@RequestMapping(value="/getDocumentari", method=RequestMethod.GET)
@@ -104,34 +108,40 @@ public class ProdottoController {
 	}
 	
 	@RequestMapping(value="/addProdotto", method=RequestMethod.POST)
-	public String addDocumentario(Model model,
-			   					  @RequestParam("servizioID") Long id,
-						   		  @ModelAttribute("prodotto") Prodotto prodotto,
-						   		  @RequestParam("file") MultipartFile file) {
+	public String addProdotto(Model model,
+						   	  @ModelAttribute("prodotto") Prodotto prodotto,
+						   	  BindingResult bindingResult,
+						      @RequestParam("file") MultipartFile file) {
 		
-		String path = "/img/" + file.getOriginalFilename();
-    	prodotto.setPath(path);
-    	prodotto.setRegista(registaService.RegistaPerId(prodotto.getRegista().getId()));
-    	System.out.println(id + "\n\n\n\n");
-    	prodotto.addServizio(servizioService.servizioPerdId(id));
-    	System.out.println(servizioService.servizioPerdId(id).getNome() + "\n\n\n\n");
-    	
-    	prodottoService.inserisci(prodotto);
-    	
-    	if(prodotto.getTipo().equals("Documentario")) {
-			model.addAttribute("prodotti", prodottoService.tuttiDocumentari());
-			model.addAttribute("tipo", "DOCUMENTARI");
-    	}
-    	
-    	if(prodotto.getTipo().equals("Film")) {
-    		model.addAttribute("prodotti", prodottoService.tuttiFilm());
-			model.addAttribute("tipo", "FILM");
-    	}
-    	
-    	if(prodotto.getTipo().equals("SerieTV")) {
-    		model.addAttribute("prodotti", prodottoService.tutteSerie());
-			model.addAttribute("tipo", "SERIE TV");
-    	}
+		this.prodottoValidator.validate(prodotto, bindingResult);
+		
+		if(!bindingResult.hasErrors()) {
+			String path = "/img/" + file.getOriginalFilename();
+	    	prodotto.setPath(path);
+	    	prodotto.setRegista(registaService.RegistaPerId(prodotto.getRegista().getId()));
+	    	
+	    	prodottoService.inserisci(prodotto);
+	    	
+	    	if(prodotto.getTipo().equals("Documentario")) {
+				model.addAttribute("prodotti", prodottoService.tuttiDocumentari());
+				model.addAttribute("tipo", "DOCUMENTARI");
+	    	}
+	    	
+	    	else if(prodotto.getTipo().equals("Film")) {
+	    		model.addAttribute("prodotti", prodottoService.tuttiFilm());
+				model.addAttribute("tipo", "FILM");
+	    	}
+	    	
+	    	else if(prodotto.getTipo().equals("SerieTV")) {
+	    		model.addAttribute("prodotti", prodottoService.tutteSerie());
+				model.addAttribute("tipo", "SERIE TV");
+	    	}
+	    	
+	    	return "index.html";
+	    	
+		}
+		model.addAttribute("prodotti", prodottoService.tutti());
+		model.addAttribute("tipo", "TUTTI I PRODOTTI");
 		
 		return "index.html";
 	}
@@ -160,7 +170,6 @@ public class ProdottoController {
     	prodotto.setPath(path);
     	prodotto.setRegista(registaService.RegistaPerId(prodotto.getRegista().getId()));
     	
-    	System.out.println(id + "\n\n\n\n");
     	prodottoService.deleteProdotto(id);
     	prodottoService.inserisci(prodotto);
     	
@@ -170,7 +179,8 @@ public class ProdottoController {
 		
     	Prodotto prodottoModificato = prodottoService.tutti().get(prodottoService.tutti().size()-1);
 		model.addAttribute("prodotto", prodottoModificato);
-		model.addAttribute("voto", voto);
+		model.addAttribute("votoMedio", voto);
+		model.addAttribute("voto", new Voto());
 		
 		return "prodotto.html";
 	}

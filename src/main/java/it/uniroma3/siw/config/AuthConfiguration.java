@@ -42,7 +42,7 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter {
                 // authorization paragraph: qui definiamo chi può accedere a cosa
                 .authorizeRequests()
                 // chiunque (autenticato o no) può accedere alle pagine index, login, register, ai css e alle immagini
-                .antMatchers(HttpMethod.GET, "/", "/index", "/login", "/register", "/css/**", "/img/**", "/getFilm", "/getSeries", "/getDocumentari", "/getProdotto/{idProdotto}").permitAll()
+                .antMatchers(HttpMethod.GET, "/", "/index", "/login", "/register", "/css/**", "/img/**", "/getFilm", "/getDocumentari", "/getSeries", "/getProdotto/{id}").permitAll()
                 // chiunque (autenticato o no) può mandare richieste POST al punto di accesso per login e register 
                 .antMatchers(HttpMethod.POST, "/login", "/register").permitAll()
                 // solo gli utenti autenticati con ruolo ADMIN possono accedere a risorse con path /admin/**
@@ -90,6 +90,7 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter {
      * This method defines a "passwordEncoder" Bean.
      * The passwordEncoder Bean is used to encrypt and decrpyt the Credentials passwords.
      */
+   
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

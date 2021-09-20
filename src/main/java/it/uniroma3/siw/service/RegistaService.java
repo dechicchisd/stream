@@ -29,11 +29,14 @@ public class RegistaService {
 
 	@Transactional
 	public Regista RegistaPerId(Long id) {
-		Optional<Regista> optional = RegistaRepository.findById(id);
-		if (optional.isPresent())
-			return optional.get();
-		else 
-			return null;
+		if(id!=null) {
+			Optional<Regista> optional = RegistaRepository.findById(id);
+		
+			if (optional.isPresent())
+				return optional.get();
+		}
+		
+		return null;
 	}
 
 	@Transactional
