@@ -47,9 +47,6 @@ public class ProdottoController {
 	private ServizioService serviziService;
 
 	@Autowired
-	private ServizioService servizioService;
-
-	@Autowired
 	private UserService userService;
 
 	@Autowired
@@ -166,28 +163,31 @@ public class ProdottoController {
 								   @PathVariable("id") Long id, 
 								   @ModelAttribute("prodotto") Prodotto prodotto,
 								   @RequestParam("file") MultipartFile file) {
-		String path = "/img/" + file.getOriginalFilename();
-    	prodotto.setPath(path);
-    	prodotto.setRegista(registaService.RegistaPerId(prodotto.getRegista().getId()));
-    	
-    	prodottoService.deleteProdotto(id);
-    	prodottoService.inserisci(prodotto);
-    	
-		List<Voto> voti = votoService.tutti();
-    	
-		Float voto = UtilsStream.mediaVoti(voti);
 		
-    	Prodotto prodottoModificato = prodottoService.tutti().get(prodottoService.tutti().size()-1);
-		model.addAttribute("prodotto", prodottoModificato);
-		model.addAttribute("votoMedio", voto);
+		Prodotto prodottoDB=this.prodottoService.ProdottoPerId(id);
+		String path = "/img/" + file.getOriginalFilename();
+    	prodottoDB.setPath(path);
+    	prodottoDB.setRegista(registaService.RegistaPerId(prodotto.getRegista().getId()));
+    	prodottoDB.setGenere(prodotto.getPath());
+    	prodottoDB.setTitolo(prodotto.getTitolo());
+    	prodottoDB.setTipo(prodotto.getTipo());
+    	
+    	prodottoService.inserisci(prodottoDB);
+    	
+		List<Voto> voti = votoService.votiPerIdProdotto(id);
+    	
+		Float votoMedio = UtilsStream.mediaVoti(voti);
+		System.out.println(votoMedio);
+		
+		model.addAttribute("prodotto", prodottoDB);
+		model.addAttribute("votoMedio", votoMedio);
 		model.addAttribute("voto", new Voto());
 		
 		return "prodotto.html";
 	}
 	
 	@RequestMapping(value="/eliminaProdotto/{id}", method=RequestMethod.GET)
-	public String modificaProdotto(Model model, @PathVariable("id") Long id) {
-		System.out.println(id + "\n\n\n\n");
+	public String eliminaProdotto(Model model, @PathVariable("id") Long id) {
 		
 		System.out.println(prodottoService.ProdottoPerId(id).getTitolo());
 		prodottoService.deleteProdotto(id);
@@ -213,16 +213,23 @@ public class ProdottoController {
 		
 		if(!bindingResult.hasErrors()) {
 			Long userId = credentials.getUser().getId();
-			voto.setUtente(userService.getUser(userId));
 			
-			votoService.cancellaVotoUtente(userId);
+			Voto votoDB = this.votoService.votoUtenteProdotto(prodottoId, userId);
+			if(votoDB != null) {
+				votoDB.setVoto(voto.getVoto());
+				this.votoService.inserisci(votoDB);
+			}
 			
-			voto.setProdotto(prodotto);
-			prodotto.addVoto(voto);
-			
-			votoService.inserisci(voto);
-			prodottoService.inserisci(prodotto);
-			
+			else if(votoDB==null) {
+				voto.setUtente(userService.getUser(userId));
+				voto.setProdotto(prodotto);
+				
+				prodotto.addVoto(voto);
+				
+				votoService.inserisci(voto);
+				prodottoService.inserisci(prodotto);
+				
+			}
 			votiProdotto = votoService.votiPerIdProdotto(prodottoId);
 			
 			model.addAttribute("votoMedio", UtilsStream.mediaVoti(votiProdotto));

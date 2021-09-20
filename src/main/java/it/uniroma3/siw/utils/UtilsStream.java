@@ -8,7 +8,7 @@ public class UtilsStream {
 	
 	public static Float mediaVoti(List<Voto> voti) {
 		int size_voti = voti.size();
-		int somma_voti = 0;
+		float somma_voti = 0;
 		
 		for(Voto v : voti) {
 			somma_voti += v.getVoto();
@@ -17,7 +17,7 @@ public class UtilsStream {
 		if(size_voti == 0)
 			return (float) 0;
 		
-		float media = (float)(somma_voti/(float)size_voti);
+		float media = somma_voti/(float)size_voti;
 		
 		media = (float) (Math.floor(media * 10)/10);
 		

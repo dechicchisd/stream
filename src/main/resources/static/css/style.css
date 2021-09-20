@@ -190,6 +190,9 @@ h2{
 	justify-content: center;
 	align-items: center;
 }
+.edit-btn a:visited{
+	color: blue;
+}
 
 .edit-btn{
 	font-size: 20px;
