@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import it.uniroma3.siw.controller.validator.AttoreValidator;
 import it.uniroma3.siw.model.Attore;
 import it.uniroma3.siw.model.Prodotto;
 import it.uniroma3.siw.service.AttoreService;
@@ -26,6 +28,9 @@ public class AttoreController {
 	
 	@Autowired
 	private ProdottoService prodottoService;
+
+	@Autowired
+	private AttoreValidator attoreValidator;
 	
 	@RequestMapping(value="/addAttore", method=RequestMethod.GET)
 	public String getAddAttore(Model model) {
@@ -36,17 +41,24 @@ public class AttoreController {
 	@RequestMapping(value="/addAttore", method=RequestMethod.POST)
 	public String addAttore(Model model, 
 							@ModelAttribute("attore") Attore attore,
+							BindingResult bindingResult,
 							@RequestParam("file") MultipartFile file) {
 		
-		String path = "/img/" + file.getOriginalFilename();
-    	
-		attore.setPath(path);
-		attoreService.inserisci(attore);
+		this.attoreValidator.validate(attore, bindingResult);
 		
-		model.addAttribute("prodotti", prodottoService.tutti());
-		model.addAttribute("tipo", "TUTTI I PRODOTTI");
+		if(!bindingResult.hasErrors()) {
+			String path = "/img/" + file.getOriginalFilename();
+	    	
+			attore.setPath(path);
+			attoreService.inserisci(attore);
+			
+			model.addAttribute("prodotti", prodottoService.tutti());
+			model.addAttribute("tipo", "TUTTI I PRODOTTI");
+			
+			return "index.html";
+		}
 		
-		return "index.html";
+		return "/admin/addAttoreForm";
 	}
 	
 	@RequestMapping(value="/addAttoreCast/{id}", method=RequestMethod.GET)
@@ -108,7 +120,8 @@ public class AttoreController {
 			this.prodottoService.inserisci(p);
 		}
 		
-		this.attoreService.deleteAttore(attore);
+		if(attore != null)
+			this.attoreService.deleteAttore(attore);
 		
 		model.addAttribute("prodotti", prodottoService.tutti());
 		model.addAttribute("tipo", "TUTTI I PRODOTTI");

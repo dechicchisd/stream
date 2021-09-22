@@ -48,30 +48,37 @@ public class RegistaController {
 			String path = "/img/" + file.getOriginalFilename();
 	    	regista.setPath(path);
 	    	registaService.inserisci(regista);
+	    
+	    	model.addAttribute("prodotti", prodottoService.tutti());
+			model.addAttribute("tipo", "TUTTI I PRODOTTI");
+	    	return "index";
 		}
-		model.addAttribute("prodotti", prodottoService.tutti());
-		model.addAttribute("tipo", "TUTTI I PRODOTTI");
 		
-		return "index.html";
+		
+		return "/admin/addRegistaForm";
 	}
 	
 	@RequestMapping(value="/deleteRegista", method=RequestMethod.GET)
 	private String deleteRegista(Model model, @RequestParam("nome") String nome, @RequestParam("cognome") String cognome){
 		
 		Regista regista = this.registaService.registaPerNomeECognome(nome, cognome);
-		List<Prodotto> prodottiDelRegista = this.prodottoService.prodottiPerRegistaId(regista.getId());
-		
-		for(Prodotto p : prodottiDelRegista) {
-			p.setRegista(null);
-			this.prodottoService.inserisci(p);
+			
+		if(regista != null) {
+			List<Prodotto> prodottiDelRegista = this.prodottoService.prodottiPerRegistaId(regista.getId());
+			
+			for(Prodotto p : prodottiDelRegista) {
+				p.setRegista(null);
+				this.prodottoService.inserisci(p);
+			}
+			
+			this.registaService.deleteRegista(regista);
 		}
-		
-		this.registaService.deleteRegista(regista);
-		
-		model.addAttribute("prodotti", prodottoService.tutti());
-		model.addAttribute("tipo", "TUTTI I PRODOTTI");
-		
-		return "index.html";
+			
+			model.addAttribute("prodotti", prodottoService.tutti());
+			model.addAttribute("tipo", "TUTTI I PRODOTTI");
+			
+			return "index.html";
+			
 	}
 	
 	@RequestMapping(value="/deleteRegistaForm", method=RequestMethod.GET)
