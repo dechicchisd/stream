@@ -1,0 +1,88 @@
+Stream
+
+Caso d'uso UC1: Consulta l'elenco dei prodotti
+-Attore primario: utente non registrato
+-Scenario principale di successo:
+	-L'utente consulta l'elenco dei prodotti disponibili
+	-L'utente sceglie uno specifico prodotto e ne richiede i dettagli
+	-Il sistema mostra i dettagli del prodotto scelto dall'utente
+
+Caso d'uso UC2: Filtra prodotti per tipo
+-Attore primario: utente non registrato
+-Scenario principale di successo:
+	-L'utente seleziona il tipo di prodotto
+	-Il sistema mostra tutti i prodotti del tipo selezionato dall'utente
+
+Caso d'uso UC3: Aggiungi prodotto
+-Attore primario: amministratore
+-Scenario principale di successo:
+	-L'amministratore crea un nuovo prodotto
+	-L'amministratore imposta la tipologia del nuovo prodotto, e ne indica gli altri campi
+	-Il sistema registra il nuovo prodotto
+-Precondizioni: l'amministratore è identificato e autenticato
+
+
+
+
+
+Caso d'uso UC4: Inserimento di una tipologia di esame
+-Attore primario: amministratore
+-Scenario principale di successo:
+	-L'amministratore inserisce una nuova tipologia di esame specificandone i dettagli
+	-Il sistema registra la tipologia di esame
+-Precondizioni: l'amministratore è identificato e autenticato
+
+Caso d'uso UC5: Esami effettuati da un medico
+-Attore primario: amministratore
+-Scenario principale di successo:
+	-L'amministratore fornisce nome e cognome di un medico
+	-Il sistema mostra tutti gli esami effettuati da quel medico
+-Precondizioni: l'amministratore è identificato e autenticato
+
+Caso d'uso UC6: Inserimento risultati esame
+-Attore primario: amministratore
+-Scenario principale di successo:
+	-L'amministratore un codice esame
+	-Il sistema presenta all'aministratore l'esame relativo al codice immesso
+	-L'amministratore inserisce tutti i risultati dell'esame
+-Precondizioni: l'amministratore è identificato e autenticato
+
+Caso d'uso UC7: Inserimento nuovo medico
+-Attore primario: amministratore
+-Scenario principale di successo:
+	-L'amministratore inserisce nome, cognome e specializzazione
+	-Il sistema registra il nuovo medico
+-Precondizioni: l'amministratore è identificato e autenticato
+
+Caso d'uso UC7: Elimina medico
+-Attore primario: amministratore
+-Scenario principale di successo:
+	-L'amministratore inserisce codice, nome e cognome relativi al medico da eliminare
+	-Se i dati corrispondono il sistema elimina il medico
+-Precondizioni: l'amministratore è identificato e autenticato
+
+Caso d'uso UC7: Inserimento nuovo paziente
+-Attore primario: amministratore
+-Scenario principale di successo:
+	-L'amministratore inserisce nome e cognome del paziente 
+	-Il sistema registra il nuovo paziente
+-Precondizioni: l'amministratore è identificato e autenticato
+
+Caso d'uso UC7: Elimina paziente
+-Attore primario: amministratore
+-Scenario principale di successo:
+	-L'amministratore inserisce codice, nome e cognome relativi al paziente da eliminare
+	-Se i dati corrispondono il sistema elimina il paziente
+-Precondizioni: l'amministratore è identificato e autenticato
+
+Caso d'uso UC8: Registrazione
+-Attore primario: utente non registrato
+-Scenario principale di successo:
+	-L'utente inserisce nome, cognome, username, password, ed eventualmente (se è un paziente) il codice paziente
+	-Il sistema registra il nuovo utente
+-Precondizioni: l'amministratore è identificato e autenticato
+
+
+
+
+
