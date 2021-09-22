@@ -21,68 +21,89 @@ Caso d'uso UC3: Aggiungi prodotto
 	-Il sistema registra il nuovo prodotto
 -Precondizioni: l'amministratore è identificato e autenticato
 
-
-
-
-
-Caso d'uso UC4: Inserimento di una tipologia di esame
+Caso d'uso UC4: Aggiungi attore
 -Attore primario: amministratore
 -Scenario principale di successo:
-	-L'amministratore inserisce una nuova tipologia di esame specificandone i dettagli
-	-Il sistema registra la tipologia di esame
+	-L'amministratore inserisce nome e cognome dell'attore
+	-Il sistema registra l'attore
 -Precondizioni: l'amministratore è identificato e autenticato
 
-Caso d'uso UC5: Esami effettuati da un medico
+Caso d'uso UC5: Aggiungi regista
 -Attore primario: amministratore
 -Scenario principale di successo:
-	-L'amministratore fornisce nome e cognome di un medico
-	-Il sistema mostra tutti gli esami effettuati da quel medico
+	-L'amministratore inserisce nome e cognome del regista
+	-Il sistema registra il regista
 -Precondizioni: l'amministratore è identificato e autenticato
 
-Caso d'uso UC6: Inserimento risultati esame
+Caso d'uso UC6: Aggiungi servizio
 -Attore primario: amministratore
 -Scenario principale di successo:
-	-L'amministratore un codice esame
-	-Il sistema presenta all'aministratore l'esame relativo al codice immesso
-	-L'amministratore inserisce tutti i risultati dell'esame
+	-L'amministratore inserisce il nome e l'immagine del servizio
+	-Il sistema registra il servizio
 -Precondizioni: l'amministratore è identificato e autenticato
 
-Caso d'uso UC7: Inserimento nuovo medico
+Caso d'uso UC7: Elimina attore
 -Attore primario: amministratore
 -Scenario principale di successo:
-	-L'amministratore inserisce nome, cognome e specializzazione
-	-Il sistema registra il nuovo medico
+	-L'amministratore inserisce nome e cognome relativi all'attore da eliminare
+	-Il sistema elimina l'attore
 -Precondizioni: l'amministratore è identificato e autenticato
 
-Caso d'uso UC7: Elimina medico
+Caso d'uso UC8: Elimina regista
 -Attore primario: amministratore
 -Scenario principale di successo:
-	-L'amministratore inserisce codice, nome e cognome relativi al medico da eliminare
-	-Se i dati corrispondono il sistema elimina il medico
+	-L'amministratore inserisce nome e cognome relativi al regista da eliminare
+	-Se i dati corrispondono il sistema elimina il regista
 -Precondizioni: l'amministratore è identificato e autenticato
 
-Caso d'uso UC7: Inserimento nuovo paziente
+Caso d'uso UC9: Elimina prodotto
 -Attore primario: amministratore
 -Scenario principale di successo:
-	-L'amministratore inserisce nome e cognome del paziente 
-	-Il sistema registra il nuovo paziente
+	-L'amministratore seleziona il prodotto da eliminare
+	-Il sistema elimina il prodotto selezionato
 -Precondizioni: l'amministratore è identificato e autenticato
 
-Caso d'uso UC7: Elimina paziente
+Caso d'uso UC10: Rimuovi attore dal cast di un prodotto
 -Attore primario: amministratore
 -Scenario principale di successo:
-	-L'amministratore inserisce codice, nome e cognome relativi al paziente da eliminare
-	-Se i dati corrispondono il sistema elimina il paziente
+	-L'amministratore seleziona un prodotto
+	-Il sistema fornisce le specifiche del prodotto richiesto
+	-L'amministratore seleziona l'attore da rimuovere dal cast di quel prodotto
+	-Il sistema rimuove l'attore dal cast di quel prodotto
 -Precondizioni: l'amministratore è identificato e autenticato
 
-Caso d'uso UC8: Registrazione
--Attore primario: utente non registrato
+Caso d'uso UC11: Inserisci attore nel cast di un prodotto
+-Attore primario: amministratore
 -Scenario principale di successo:
-	-L'utente inserisce nome, cognome, username, password, ed eventualmente (se è un paziente) il codice paziente
-	-Il sistema registra il nuovo utente
+	-L'amministratore seleziona un prodotto al quale vuole aggiungere un attore al cast
+	-Il sistema mostra tutti gli attori presenti
+	-L'amministratore selezia un attore
+	-Il sistema aggiunge l'attore al cast e mostra il nuovo cast completo
 -Precondizioni: l'amministratore è identificato e autenticato
 
+Caso d'uso UC12: Modifica prodotto
+-Attore primario: amministratore
+-Scenario principale di successo:
+	-L'amministratore seleziona il prodotto da modificare
+	-Il sistema fornisce le specifiche tutte le specifiche prima della modifica
+	-L'amministratore inserisce le nuove specifiche
+	-Il sistema aggiorna le specifiche del prodotto selezionato
+-Precondizioni: l'amministratore è identificato e autenticato
 
+Caso d'uso UC13: Vota prodotto
+-Attore primario: utente registrato
+-Scenario principale di successo:
+	-L'utente seleziona un prodotto
+	-Il sistema fornisce le specifiche del prodotto selezionato
+	-L'utente inserisce il voto
+	-Il sistema fa la media tra i voti unici degli altri utenti e mostra la nuova media
+-Precondizioni: l'utente è identificato e autenticato
 
+Caso d'uso UC14: Aggiungi prodotto alla watchlist
+-Attore primario: amministratore
+-Scenario principale di successo:
+	-L'utente seleziona il prodotto da aggiumgere alla watchlist
+	-Il sistema aggiunge il prodotto alla watchlist specifica dell'utente collegato
+-Precondizioni: l'utente è identificato e autenticato
 
 
