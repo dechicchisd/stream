@@ -1,5 +1,8 @@
 package it.uniroma3.siw.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -85,5 +88,37 @@ public class AttoreController {
 		model.addAttribute("tipo", "TUTTI I PRODOTTI");
 		
 		return "index.html";
+	}
+
+	@RequestMapping(value="/deleteAttore", method=RequestMethod.GET)
+	public String eliminaAttore(Model model, @RequestParam("nome") String nome, @RequestParam("cognome") String cognome) {
+		
+		Attore attore = this.attoreService.attorePerNomeECognome(nome, cognome);
+		List<Prodotto> tuttiProdotti = this.prodottoService.tutti();
+		List<Prodotto> prodottiAttore = new ArrayList<Prodotto>();
+
+		for(Prodotto p : tuttiProdotti) {
+			if(p.getAttori().contains(attore)) {
+				prodottiAttore.add(p);
+			}
+		}
+		
+		for(Prodotto p : prodottiAttore) {
+			p.removeAttoreCast(attore);
+			this.prodottoService.inserisci(p);
+		}
+		
+		this.attoreService.deleteAttore(attore);
+		
+		model.addAttribute("prodotti", prodottoService.tutti());
+		model.addAttribute("tipo", "TUTTI I PRODOTTI");
+		
+		return "index.html";
+	}
+	
+	@RequestMapping(value="/deleteAttoreForm", method=RequestMethod.GET)
+	public String eliminaAttoreForm(Model model) {
+		
+		return "/admin/deleteAttoreForm";
 	}
 }

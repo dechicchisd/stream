@@ -24,7 +24,7 @@ public class Prodotto {
 	
 	private String titolo;
 	
-	@ManyToOne (cascade = {CascadeType.ALL})
+	@ManyToOne
 	private Regista regista;
 	
 	@ManyToMany
@@ -44,10 +44,13 @@ public class Prodotto {
 	@OneToMany(mappedBy="prodotto")
 	private List<Voto> voti;
 	
+	
+	
 	public Prodotto() {
 		attori = new ArrayList<Attore>();
 		voti = new ArrayList<Voto>();		
-		servizi = new ArrayList<Servizio>();		
+		servizi = new ArrayList<Servizio>();
+		utentiWatchlist = new ArrayList<User>();
 	}
 	
 	public void addAttoreCast(Attore attore) {

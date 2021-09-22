@@ -40,13 +40,28 @@ public class UserController {
 			System.out.println(id + "\n\n\n\n" + credentials.getUser().getId());
 			model.addAttribute("tipo", "WATCHLIST");
 			model.addAttribute("prodotti", this.userService.getUser(id).getWatchlist());
-			return "index";
+			return "watchlist";
 		}
 		
 		model.addAttribute("tipo", "TUTTI I PRODOTTI");
 		model.addAttribute("prodotti", this.prodottoService.tutti());
 		
 		return "index";
+	}
+	
+	@RequestMapping(value="/eliminaDaWatchlist/{id}", method = RequestMethod.GET)
+	public String eliminaDaWatchlist(Model model, @PathVariable("id") Long prodottoId, HttpSession session) {
+		Credentials credentials = (Credentials) session.getAttribute("credentials");
+		
+		User user = credentials.getUser();
+		Prodotto prodotto = this.prodottoService.ProdottoPerId(prodottoId);
+		
+		user.removeFromWatchlist(prodotto);
+		this.userService.saveUser(user);
+		
+		model.addAttribute("tipo", "WATCHLIST");
+		model.addAttribute("prodotti", user.getWatchlist());
+		return "watchlist";
 	}
 	
 	@RequestMapping(value="/addWatchlist/{idProdotto}", method = RequestMethod.GET)

@@ -133,7 +133,7 @@ form h2, form label{
 .lista-prodotti li{
 	list-style-type: none;
 	width: 200px;
-	height: 350px;
+	height: 360px;
 	overflow: hidden;
 	margin-bottom: 20px;
 }
@@ -299,18 +299,20 @@ h2{
 	min-width:100px
 }
 
-.wish-button{
-	display: flex;
-	background-color: green;
-	width: 200px;
-	height: 30px; 
-	border-radius: 2px;
-	justify-content: center;
-	align-items: center;
+
+.watch-button{
+	text-align: center;
+	background-color: #00b02f;
+	border-radius: 3px;
 }
 
-.wish-button a{
+.watch-button:active{
+	background-color: #00701e;
+}
+
+.watch-button a{
 	display: block;
 	text-decoration: none;
 	color: #e3be39;
+	padding: 10px;
 }

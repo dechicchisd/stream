@@ -26,4 +26,7 @@ public interface ProdottoRepository extends CrudRepository<Prodotto, Long>{
 
 	public List<Prodotto> findProdottoByTitolo(String nome);
 
+	@Query("SELECT pr FROM Prodotto pr WHERE pr.regista.id = ?1")
+	List<Prodotto> findByRegistaId(Long registaId);
+	
 }

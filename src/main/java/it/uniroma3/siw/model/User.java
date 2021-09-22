@@ -33,6 +33,7 @@ public class User {
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Prodotto> watchlist;
 	
+	
 	public User() {
 		this.voti = new ArrayList<Voto>();
 		this.watchlist = new ArrayList<Prodotto>();
@@ -40,6 +41,10 @@ public class User {
 
 	public void addToWatchlist(Prodotto prodotto) {
 		this.watchlist.add(prodotto);
+	}
+	
+	public void removeFromWatchlist(Prodotto prodotto) {
+		this.watchlist.remove(prodotto);
 	}
 	
 	

@@ -168,7 +168,7 @@ public class ProdottoController {
 		String path = "/img/" + file.getOriginalFilename();
     	prodottoDB.setPath(path);
     	prodottoDB.setRegista(registaService.RegistaPerId(prodotto.getRegista().getId()));
-    	prodottoDB.setGenere(prodotto.getPath());
+    	prodottoDB.setGenere(prodotto.getGenere());
     	prodottoDB.setTitolo(prodotto.getTitolo());
     	prodottoDB.setTipo(prodotto.getTipo());
     	

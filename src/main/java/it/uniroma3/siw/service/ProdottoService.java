@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.uniroma3.siw.model.Attore;
 import it.uniroma3.siw.model.Prodotto;
 import it.uniroma3.siw.repository.ProdottoRepository;
 
@@ -69,4 +70,11 @@ public class ProdottoService {
 	public void deleteProdotto(Long id) {
 		prodottoRepository.deleteProdotto(id);
 	}
+
+	@Transactional
+	public List<Prodotto> prodottiPerRegistaId(Long registaId) {
+		return this.prodottoRepository.findByRegistaId(registaId);
+	}
+
+	
 }

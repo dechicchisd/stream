@@ -15,22 +15,22 @@ import it.uniroma3.siw.repository.RegistaRepository;
 public class RegistaService {
 
 	@Autowired
-	private RegistaRepository RegistaRepository; 
+	private RegistaRepository registaRepository; 
 	
 	@Transactional
 	public Regista inserisci(Regista regista) {
-		return RegistaRepository.save(regista);
+		return registaRepository.save(regista);
 	}
 	
 	@Transactional
 	public List<Regista> tutti() {
-		return (List<Regista>) RegistaRepository.findAll();
+		return (List<Regista>) registaRepository.findAll();
 	}
 
 	@Transactional
 	public Regista RegistaPerId(Long id) {
 		if(id!=null) {
-			Optional<Regista> optional = RegistaRepository.findById(id);
+			Optional<Regista> optional = registaRepository.findById(id);
 		
 			if (optional.isPresent())
 				return optional.get();
@@ -41,10 +41,26 @@ public class RegistaService {
 
 	@Transactional
 	public boolean alreadyExists(Regista regista) {
-		List<Regista> registi = this.RegistaRepository.findByNomeAndCognome(regista.getNome(), regista.getCognome());
+		List<Regista> registi = this.registaRepository.findByNomeAndCognome(regista.getNome(), regista.getCognome());
 		if (registi.size() > 0)
 			return true;
 		else 
 			return false;
+	}
+
+	@Transactional
+	public Regista registaPerNomeECognome(String nome, String cognome) {
+		
+		List<Regista> registi = this.registaRepository.findByNomeAndCognome(nome, cognome);
+		
+		if(registi.size()>0)
+			return registi.get(0);
+		
+		return null;
+	}
+	
+	@Transactional
+	public void deleteRegista(Regista regista) {
+		this.registaRepository.delete(regista);
 	}
 }

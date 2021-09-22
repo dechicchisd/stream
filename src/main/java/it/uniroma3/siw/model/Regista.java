@@ -29,7 +29,7 @@ public class Regista {
 	
 	private String path;
 	
-	@OneToMany(mappedBy="regista", cascade = {CascadeType.ALL})
+	@OneToMany(mappedBy="regista")
 	private List<Prodotto> prodotti;
 
 }
