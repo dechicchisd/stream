@@ -6,18 +6,18 @@
 	<header th:replace="fragments/base.html :: navbar(page='')"></header>
 	<main class="background addForm">
 		<form th:action="@{/modificaProdotto/{id} (id = ${prodotto.id})}" method="POST" th:object="${prodotto}"enctype="multipart/form-data">
-			<div><h2 class="form-line">MODIFICA PRODOTTO</h2></div>
+			<div><h2 class="form-line" th:text=#{title.modificaProdotto}>MODIFICA PRODOTTO</h2></div>
 			
 			<div class="form-line">
-			  	<label for="id">ID</label> 
+			  	<label for="id" th:text=#{form.id}>ID</label> 
 			  	<input id="id" type="text" th:field="*{id}" readonly>
 			</div>
 			<div class="form-line">
-				<label for="titolo">Titolo</label>
+				<label for="titolo" th:text=#{form.titolo}>Titolo</label>
 				<input id="titolo" type="text" th:field="*{titolo}">
 			</div>
 			<div class="form-line">
-				<label for="tipo">Tipo</label>
+				<label for="tipo" th:text=#{form.tipo}>Tipo</label>
 				<select id="tipo" th:field="*{tipo}">
 					<option value="">-- Seleziona tipo di prodotto --</option>
 					<option value="Film" th:selected="${prodotto.tipo=='Film'}">Film</option>
@@ -27,12 +27,12 @@
 			</div>
 			
 			<div class="form-line">
-				<label for="genere">Genere</label>
+				<label for="genere" th:text=#{form.genere}>Genere</label>
 				<input id="genere"type="text" th:field="*{genere}">
 			</div>
 
 			<div class="form-line">
-				<label for="regista">Regista</label>
+				<label for="regista" th:text=#{form.regista}>Regista</label>
 				<select id="regista" th:field=*{regista.id}>
 					<option value="">-- Seleziona Regista --</option>
 					<option th:each ="r : ${registi}"
@@ -44,12 +44,12 @@
 			</div>
 			
 			<div class="form-line">
-				<label for="file">Immagine</label>
+				<label for="file" th:text=#{form.immagine}>Immagine</label>
 				<input id="file" type="file" name="file" style="color: white">
 			</div>
 			
 			<div class="form-line">
-				<button type="submit">Modifica</button>
+				<button type="submit" th:text=#{form.modifica}>Modifica</button>
 			</div>
 		
 		</form>

@@ -6,12 +6,12 @@
 	<header th:replace="fragments/base.html :: navbar(page='')"></header>
 	<main id="operazioni" class="background">
 		<div class="lista-operazioni">
-			<div><a th:href="@{addProdotto}">AGGIUNGI PRODOTTO</a></div>
-			<div><a th:href="@{addRegista}">AGGIUNGI REGISTA</a></div>
-			<div><a th:href="@{deleteRegistaForm}">ELIMINA REGISTA</a></div>
-			<div><a th:href="@{addAttore}">AGGIUNGI ATTORE</a></div>
-			<div><a th:href="@{deleteAttoreForm}">ELIMINA ATTORE</a></div>
-			<div><a th:href="@{addServizio}">AGGIUNGI SERVIZIO</a></div>
+			<div><a th:href="@{addProdotto}" th:text=#{title.addProdotto}>AGGIUNGI PRODOTTO</a></div>
+			<div><a th:href="@{addRegista}" th:text=#{title.addRegista}>AGGIUNGI REGISTA</a></div>
+			<div><a th:href="@{deleteRegistaForm}" th:text=#{title.deleteRegista}>ELIMINA REGISTA</a></div>
+			<div><a th:href="@{addAttore}" th:text=#{title.addAttore}>AGGIUNGI ATTORE</a></div>
+			<div><a th:href="@{deleteAttoreForm}" th:text=#{title.deleteAttore}>ELIMINA ATTORE</a></div>
+			<div><a th:href="@{addServizio}" th:text=#{title.addServizio}>AGGIUNGI SERVIZIO</a></div>
 			
 		</div>
 		

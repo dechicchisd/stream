@@ -6,26 +6,26 @@
 	<header th:replace="fragments/base.html :: navbar(page='')"></header>
 	<main class="background addForm">
 		<form th:action="@{/login}" method="POST">
-			<div><h2 class="form-line">LOGIN</h2></div>
+			<div><h2 class="form-line" th:text=#{title.login}>LOGIN</h2></div>
 			
 			<div class="form-line">
-				<label for="username">Username</label>
+				<label for="username" th:text=#{form.username}>Username</label>
 				<input id="username" type="text" name="username" required>
 			</div>
 			
 			
 			<div class="form-line">
-				<label for="password">Password</label>
+				<label for="password" th:text=#{form.password}>Password</label>
 				<input id="password" type="password" name="password" required>
 			</div>
 			
 			
 			<div class="form-line">
-				<button type="submit">Login</button>
+				<button type="submit" th:text=#{form.login}>Login</button>
 			</div>
 
 			<div>
-				<a th:href="@{/register}">Non hai un account? Registrati</a>
+				<a th:href="@{/register}" th:text=#{form.nonRegistrato}>Non hai un account? Registrati</a>
 			</div>
 		
 		

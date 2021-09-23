@@ -6,10 +6,10 @@
 	<header th:replace="fragments/base.html :: navbar(page='')"></header>
 	<main class="background addForm">
 		<form th:action="@{/register}" method="POST">
-			<div><h2 class="form-line">REGISTRATI</h2></div>
+			<div><h2 class="form-line" th:text=#{title.registrati}>REGISTRATI</h2></div>
 			
 			<div class="form-line">
-				<label for="nome">Nome</label>
+				<label for="nome" th:text=#{form.nome}>Nome</label>
 				<input id="nome" type="text" name="nome">
 			</div>
 			<div class="errors" 
@@ -18,7 +18,7 @@
             </div>
 
 			<div class="form-line">
-				<label for="cognome">Cognome</label>
+				<label for="cognome" th:text=#{form.cognome}>Cognome</label>
 				<input id="cognome" type="text" name="cognome">
 			</div>
 			<div class="errors"  
@@ -27,7 +27,7 @@
             </div>
 			
 			<div class="form-line">
-				<label for="username">Username</label>
+				<label for="username" th:text=#{form.username}>Username</label>
 				<input id="username" type="text" name="username">
 			</div>
 			
@@ -37,7 +37,7 @@
             </div>
                 		
 			<div class="form-line">
-				<label for="password">Password</label>
+				<label for="password" th:text=#{form.password}>Password</label>
 				<input id="password" type="password" name="password">
 			</div>
 			
@@ -47,7 +47,7 @@
 	        </div>
 			
 			<div class="form-line">
-				<button type="submit">Registrati</button>
+				<button type="submit" th:text=#{form.registrati}>Registrati</button>
 			</div>
 		
 		</form>

@@ -6,15 +6,15 @@
 	<header th:replace="fragments/base.html :: navbar(page='')"></header>
 	<main class="background addForm">
 		<form th:action="@{/addAttoreCast/{prodottoID} (prodottoID = ${prodotto.id})}" method="POST" th:object="${prodotto}" enctype="multipart/form-data">
-			<div><h2 class="form-line">AGGIUNGI ATTORE AL CAST</h2></div>
+			<div><h2 class="form-line" th:text=#{title.addAttoreCast}>AGGIUNGI ATTORE AL CAST</h2></div>
 			
 			<div class="form-line">
-			  	<label for="titolo">Titolo</label> 
+			  	<label for="titolo" th:text=#{form.titolo}>Titolo</label> 
 			  	<input id="titolo" type="text" th:field="*{titolo}" readonly>
 			</div>
 			
 			<div class="form-line">
-				<label for="attore">Attori</label>
+				<label for="attore" th:text=#{form.attori}>Attori</label>
 				<select id="attore" name="attoreID">
 					<option value="">-- Seleziona Attore --</option>
 					<option th:each = "a : ${attori}"
@@ -25,7 +25,7 @@
 			</div>
 			
 			<div class="form-line">
-				<button type="submit">Aggiungi al cast</button>
+				<button type="submit" th:text=#{form.aggiungiCast}>Aggiungi al cast</button>
 			</div>
 		
 		</form>

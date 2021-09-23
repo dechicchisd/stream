@@ -6,25 +6,25 @@
 	<header th:replace="fragments/base.html :: navbar(page='')"></header>
 	<main class="background addForm">
 		<form th:action="@{/addRegista}" method="POST" th:object="${regista}"enctype="multipart/form-data">
-			<div><h2 class="form-line">AGGIUNGI REGISTA</h2></div>
+			<div><h2 class="form-line" th:text=#{title.addRegista}>AGGIUNGI REGISTA</h2></div>
 			
 			<div class="form-line">
-				<label for="nome">Nome</label>
+				<label for="nome"  th:text=#{form.nome}>Nome</label>
 				<input id="nome" type="text" th:field="*{nome}">
 			</div>
 			
 			<div class="form-line">
-				<label for="cognome">Cognome</label>
+				<label for="cognome" th:text=#{form.cognome}>Cognome</label>
 				<input id="cognome" type="text" th:field="*{cognome}">
 			</div>
 
 			<div class="form-line">
-				<label for="file">Foto</label>
+				<label for="file" th:text=#{form.immagine}>Foto</label>
 				<input id="file" type="file" name="file" style="color: white">
 			</div>
 			
 			<div class="form-line">
-				<button type="submit">Aggiungi</button>
+				<button type="submit" th:text=#{form.aggiungi}>Aggiungi</button>
 			</div>
 		
 		</form>
